@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pa/models/per_card.dart';
 import 'package:pa/screens/pet_details.dart';
 
 import '../data/pet_data.dart';
@@ -43,27 +44,25 @@ class _HomePageState extends State<HomePage> {
   // You can use data fetched from a database or a server as well
 
   // This list holds the data for the list view
-  List<Map<String, dynamic>> _foundUsers = [];
+  List<Pet> _foundUsers = [];
   @override
   initState() {
     // at the beginning, all users are shown
-    _foundUsers = allUsers;
+    _foundUsers = petCards;
     super.initState();
   }
 
   // This function is called whenever the text field changes
   void _runFilter(String enteredKeyword) {
-    List<Map<String, dynamic>> results = [];
+    List<Pet> results = [];
     if (enteredKeyword.isEmpty) {
       // if the search field is empty or only contains white-space, we'll display all users
-      results = allUsers;
+      results = petCards;
     } else {
-      results = allUsers
+      results = petCards
           .where((user) =>
-              user["name"]
-                  .toLowerCase()
-                  .contains(enteredKeyword.toLowerCase()) &&
-              user["type"] == type)
+              user.name.toLowerCase().contains(enteredKeyword.toLowerCase()) &&
+              user.type == type)
           .toList();
       // we use the toLowerCase() method to make it case-insensitive
     }
@@ -146,7 +145,7 @@ class _HomePageState extends State<HomePage> {
                   ? ListView.builder(
                       itemCount: _foundUsers.length,
                       itemBuilder: (context, index) {
-                        return _foundUsers[index]["type"] == type
+                        return _foundUsers[index].type == type
                             ? Padding(
                                 padding: const EdgeInsets.only(bottom: 16.0),
                                 child: GestureDetector(
@@ -156,23 +155,23 @@ class _HomePageState extends State<HomePage> {
                                       context,
                                       MaterialPageRoute(
                                         builder: (context) => PetDetailScreen(
-                                          image: _foundUsers[index]['asset'],
-                                          name: _foundUsers[index]['name'],
-                                          age: _foundUsers[index]["age"],
-                                          breed: _foundUsers[index]["breed"]
+                                          image: _foundUsers[index].imageAsset,
+                                          name: _foundUsers[index].name,
+                                          age: _foundUsers[index].age,
+                                          breed: _foundUsers[index]
+                                              .breed
                                               .toString(),
-                                          price: _foundUsers[index]["price"],
+                                          price: _foundUsers[index].price,
                                         ),
                                       ),
                                     );
                                   },
                                   child: PetCard(
-                                    image: _foundUsers[index]['asset'],
-                                    name: _foundUsers[index]['name'],
-                                    age: _foundUsers[index]["age"],
-                                    breed:
-                                        _foundUsers[index]["breed"].toString(),
-                                    price: _foundUsers[index]["price"],
+                                    image: _foundUsers[index].imageAsset,
+                                    name: _foundUsers[index].name,
+                                    age: _foundUsers[index].age,
+                                    breed: _foundUsers[index].breed,
+                                    price: _foundUsers[index].price,
                                   ),
                                 ),
                               )

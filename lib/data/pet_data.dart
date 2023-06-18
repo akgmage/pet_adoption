@@ -1,3 +1,5 @@
+import '../models/per_card.dart';
+
 final List<Map<String, dynamic>> allUsers = [
   {
     "id": 1,
@@ -225,3 +227,4 @@ final List<Map<String, dynamic>> allUsers = [
     "price": 360,
   },
 ];
+List<Pet> petCards = allUsers.map((data) => Pet.fromJson(data)).toList();
