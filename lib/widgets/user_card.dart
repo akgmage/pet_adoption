@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../constants/sizes.dart';
+
 class UserCard extends StatelessWidget {
   final String name;
   final int age;
@@ -14,15 +16,15 @@ class UserCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: double.infinity, // Set the width to take full width
       child: Card(
-        elevation: 4,
+        elevation: Sizes.cardElevation,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(Sizes.borderRadius),
         ),
         child: Padding(
-          padding: EdgeInsets.all(16),
+          padding: const EdgeInsets.all(Sizes.spacer),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

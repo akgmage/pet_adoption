@@ -18,5 +18,6 @@ class Sizes {
   static const double borderRadius = 16.0;
   static const double spreadRadius = 2.0;
   static const double blurRadius = 5.0;
+  static const double cardElevation = 4;
 // Add more predefined sizes as needed
 }
