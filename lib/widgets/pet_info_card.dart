@@ -1,18 +1,12 @@
 import 'package:flutter/material.dart';
 
 import '../constants/sizes.dart';
+import '../models/per_card.dart';
 
-class UserCard extends StatelessWidget {
-  final String name;
-  final int age;
-  final String breed;
-  final int price;
+class PetInfoCard extends StatelessWidget {
+  final Pet pet;
 
-  UserCard(
-      {required this.name,
-      required this.age,
-      required this.breed,
-      required this.price});
+  PetInfoCard({required this.pet});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +23,7 @@ class UserCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Name: $name',
+                'Name: ${pet.name}',
                 style: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
@@ -37,17 +31,17 @@ class UserCard extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               Text(
-                'Age: $age',
+                'Age: ${pet.age}',
                 style: const TextStyle(fontSize: 16),
               ),
               const SizedBox(height: 8),
               Text(
-                'Breed: $breed',
+                'Breed: ${pet.breed}',
                 style: const TextStyle(fontSize: 16),
               ),
               const SizedBox(height: 8),
               Text(
-                'Price: Rs $price',
+                'Price: Rs ${pet.price}',
                 style: const TextStyle(fontSize: 16),
               ),
             ],

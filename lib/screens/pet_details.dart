@@ -4,7 +4,7 @@ import 'package:photo_view/photo_view.dart';
 import '../models/per_card.dart';
 import '../widgets/button.dart';
 import '../constants/sizes.dart';
-import '../widgets/user_card.dart';
+import '../widgets/pet_info_card.dart';
 
 class PetDetailScreen extends StatelessWidget {
   final Pet pet;
@@ -41,11 +41,8 @@ class PetDetailScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: Sizes.spacer * 2),
-            UserCard(
-              name: pet.name,
-              age: pet.age,
-              breed: pet.breed,
-              price: pet.price,
+            PetInfoCard(
+              pet: pet,
             ),
             const SizedBox(height: Sizes.spacer * 8),
             const AnimatedButton(),
