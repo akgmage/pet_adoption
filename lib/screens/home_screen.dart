@@ -167,11 +167,7 @@ class _HomePageState extends State<HomePage> {
                                     );
                                   },
                                   child: PetCard(
-                                    image: _foundUsers[index].imageAsset,
-                                    name: _foundUsers[index].name,
-                                    age: _foundUsers[index].age,
-                                    breed: _foundUsers[index].breed,
-                                    price: _foundUsers[index].price,
+                                    pet: _foundUsers[index],
                                   ),
                                 ),
                               )

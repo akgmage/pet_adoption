@@ -1,20 +1,12 @@
 import 'package:flutter/material.dart';
 
 import '../constants/sizes.dart';
+import '../models/per_card.dart';
 
 class PetCard extends StatelessWidget {
-  final String image;
-  final String name;
-  final int age;
-  final int price;
-  final String breed;
+  final Pet pet;
 
-  PetCard(
-      {required this.image,
-      required this.name,
-      required this.age,
-      required this.breed,
-      required this.price});
+  PetCard({required this.pet});
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +32,7 @@ class PetCard extends StatelessWidget {
               borderRadius: const BorderRadius.vertical(
                   top: Radius.circular(Sizes.borderRadius)),
               child: Image.asset(
-                image,
+                pet.imageAsset,
                 height: Sizes.cardImageHeight,
                 width: double.infinity,
                 fit: BoxFit.fill,
@@ -52,7 +44,7 @@ class PetCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    name,
+                    pet.name,
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: Sizes.normalFontSize,
@@ -68,7 +60,7 @@ class PetCard extends StatelessWidget {
                       ),
                       const SizedBox(width: Sizes.spacer / 4),
                       Text(
-                        '$age years old',
+                        '${pet.age} years old',
                         style: const TextStyle(
                           fontSize: Sizes.smallFontSize,
                           color: Colors.grey,
@@ -76,7 +68,7 @@ class PetCard extends StatelessWidget {
                       ),
                       const Spacer(),
                       Text(
-                        'Breed: $breed / Rs $price',
+                        'Breed: ${pet.breed} / Rs ${pet.price}',
                         style: const TextStyle(
                           fontSize: Sizes.smallFontSize,
                           color: Colors.grey,
