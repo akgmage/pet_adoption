@@ -44,11 +44,11 @@ class _HomePageState extends State<HomePage> {
   // You can use data fetched from a database or a server as well
 
   // This list holds the data for the list view
-  List<Pet> _foundUsers = [];
+  List<Pet> _foundPets = [];
   @override
   initState() {
     // at the beginning, all users are shown
-    _foundUsers = petCards;
+    _foundPets = petCards;
     super.initState();
   }
 
@@ -60,16 +60,16 @@ class _HomePageState extends State<HomePage> {
       results = petCards;
     } else {
       results = petCards
-          .where((user) =>
-              user.name.toLowerCase().contains(enteredKeyword.toLowerCase()) &&
-              user.type == type)
+          .where((pet) =>
+              pet.name.toLowerCase().contains(enteredKeyword.toLowerCase()) &&
+              pet.type == type)
           .toList();
       // we use the toLowerCase() method to make it case-insensitive
     }
 
     // Refresh the UI
     setState(() {
-      _foundUsers = results;
+      _foundPets = results;
     });
   }
 
@@ -141,11 +141,11 @@ class _HomePageState extends State<HomePage> {
               height: 20,
             ),
             Expanded(
-              child: _foundUsers.isNotEmpty
+              child: _foundPets.isNotEmpty
                   ? ListView.builder(
-                      itemCount: _foundUsers.length,
+                      itemCount: _foundPets.length,
                       itemBuilder: (context, index) {
-                        return _foundUsers[index].type == type
+                        return _foundPets[index].type == type
                             ? Padding(
                                 padding: const EdgeInsets.only(bottom: 16.0),
                                 child: GestureDetector(
@@ -155,13 +155,13 @@ class _HomePageState extends State<HomePage> {
                                       context,
                                       MaterialPageRoute(
                                         builder: (context) => PetDetailScreen(
-                                          pet: _foundUsers[index],
+                                          pet: _foundPets[index],
                                         ),
                                       ),
                                     );
                                   },
                                   child: PetCard(
-                                    pet: _foundUsers[index],
+                                    pet: _foundPets[index],
                                   ),
                                 ),
                               )
