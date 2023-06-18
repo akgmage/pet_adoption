@@ -1,30 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:photo_view/photo_view.dart';
 
+import '../models/per_card.dart';
 import '../widgets/button.dart';
 import '../constants/sizes.dart';
 import '../widgets/user_card.dart';
 
 class PetDetailScreen extends StatelessWidget {
-  final String image;
-  final String name;
-  final int age;
-  final int price;
-  final String breed;
+  final Pet pet;
 
-  PetDetailScreen({
-    required this.image,
-    required this.name,
-    required this.age,
-    required this.price,
-    required this.breed,
-  });
+  PetDetailScreen({required this.pet});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(name),
+        title: Text(pet.name),
         flexibleSpace: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -45,16 +36,16 @@ class PetDetailScreen extends StatelessWidget {
               alignment: Alignment.center,
               child: PhotoView(
                 imageProvider: AssetImage(
-                  image,
+                  pet.imageAsset,
                 ),
               ),
             ),
             const SizedBox(height: Sizes.spacer * 2),
             UserCard(
-              name: name,
-              age: age,
-              breed: breed,
-              price: price,
+              name: pet.name,
+              age: pet.age,
+              breed: pet.breed,
+              price: pet.price,
             ),
             const SizedBox(height: Sizes.spacer * 8),
             const AnimatedButton(),

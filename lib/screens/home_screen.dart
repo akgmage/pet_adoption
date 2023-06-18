@@ -155,13 +155,7 @@ class _HomePageState extends State<HomePage> {
                                       context,
                                       MaterialPageRoute(
                                         builder: (context) => PetDetailScreen(
-                                          image: _foundUsers[index].imageAsset,
-                                          name: _foundUsers[index].name,
-                                          age: _foundUsers[index].age,
-                                          breed: _foundUsers[index]
-                                              .breed
-                                              .toString(),
-                                          price: _foundUsers[index].price,
+                                          pet: _foundUsers[index],
                                         ),
                                       ),
                                     );
