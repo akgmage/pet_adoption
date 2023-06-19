@@ -4,13 +4,13 @@ import 'package:provider/provider.dart';
 
 import '../models/per_card.dart';
 import '../models/theme_provider.dart';
+import '../shared/shared_pref.dart';
 import '../widgets/button.dart';
 import '../constants/sizes.dart';
 import '../widgets/pet_info_card.dart';
 
 class PetDetailScreen extends StatelessWidget {
   final Pet pet;
-
   PetDetailScreen({required this.pet});
 
   @override
@@ -37,7 +37,9 @@ class PetDetailScreen extends StatelessWidget {
             PetInfoCard(
               pet: pet,
             ),
-            const AnimatedButton(),
+            AnimatedButton(
+              pet: pet,
+            ),
             const SizedBox(height: Sizes.spacer)
             // Add your animated "Adopt Me" button here
             // You can use any animation library or Flutter's built-in animations
