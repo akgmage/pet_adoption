@@ -1,4 +1,5 @@
 class Pet {
+  final int id;
   final String imageAsset;
   final String name;
   final int age;
@@ -7,6 +8,7 @@ class Pet {
   final String type;
 
   Pet({
+    required this.id,
     required this.imageAsset,
     required this.name,
     required this.age,
@@ -17,6 +19,7 @@ class Pet {
 
   factory Pet.fromJson(Map<String, dynamic> json) {
     return Pet(
+      id: json['id'] ?? '',
       imageAsset: json['asset'] ?? '',
       name: json['name'] ?? '',
       age: json['age'] ?? 0,
@@ -28,6 +31,7 @@ class Pet {
 
   Map<String, dynamic> toJson() {
     return {
+      'id': id,
       'asset': imageAsset,
       'name': name,
       'age': age,
