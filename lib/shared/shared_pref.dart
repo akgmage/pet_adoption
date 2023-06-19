@@ -13,3 +13,25 @@ class DarkThemePreference {
     return prefs.getBool(THEME_STATUS) ?? false;
   }
 }
+
+class AdoptedPetsPreference {
+  static const id = "petID";
+  static const idl = "petIDList";
+
+  setAdoptedID(int value) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    List<String> mList = (prefs.getStringList(idl) ?? []);
+    if (!mList.contains(value.toString())) {
+      mList.add(value.toString());
+      prefs.setStringList(idl, mList);
+    }
+  }
+
+  Future<List<String>> getAdoptedList() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    // fetch your string list
+    List<String> mList = (prefs.getStringList(idl) ?? []);
+    print(mList);
+    return mList;
+  }
+}
