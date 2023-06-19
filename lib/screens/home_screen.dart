@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:pa/models/per_card.dart';
 import 'package:pa/screens/pet_details.dart';
+import 'package:provider/provider.dart';
 
 import '../data/pet_data.dart';
+import '../models/theme_provider.dart';
 import '../widgets/card.dart';
 import '../widgets/pet_avatar.dart';
 
@@ -75,17 +77,9 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final themeChange = Provider.of<DarkThemeProvider>(context);
     return Scaffold(
       appBar: AppBar(
-        flexibleSpace: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [Colors.deepPurple, Colors.purple.shade300],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
-          ),
-        ),
         title: TextField(
           focusNode: myfocus,
           onChanged: (value) => _runFilter(value),
@@ -93,16 +87,20 @@ class _HomePageState extends State<HomePage> {
               labelText: 'Search',
               suffixIcon: Icon(
                 Icons.search,
-                color: Colors.white,
                 size: 30,
               ),
-              labelStyle: TextStyle(color: Colors.white, fontSize: 24)),
+              labelStyle: TextStyle(fontSize: 24)),
         ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(10),
         child: Column(
           children: [
+            Checkbox(
+                value: themeChange.darkTheme,
+                onChanged: (bool? value) {
+                  themeChange.darkTheme = value!;
+                }),
             SizedBox(
               height: 100,
               child: ListView.builder(
@@ -127,7 +125,7 @@ class _HomePageState extends State<HomePage> {
                     },
                     child: PetAvatar(
                       backgroundColor: selectedList[index]
-                          ? Colors.purple.shade300
+                          ? const Color(0xff7cb9df)
                           : Colors.transparent,
                       avatars: avatars,
                       backgroundImage:
@@ -170,7 +168,9 @@ class _HomePageState extends State<HomePage> {
                     )
                   : const Text(
                       'No results found',
-                      style: TextStyle(fontSize: 24, color: Colors.black),
+                      style: TextStyle(
+                        fontSize: 24,
+                      ),
                     ),
             ),
           ],

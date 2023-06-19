@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:photo_view/photo_view.dart';
+import 'package:provider/provider.dart';
 
 import '../models/per_card.dart';
+import '../models/theme_provider.dart';
 import '../widgets/button.dart';
 import '../constants/sizes.dart';
 import '../widgets/pet_info_card.dart';
@@ -16,15 +18,6 @@ class PetDetailScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(pet.name),
-        flexibleSpace: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [Colors.deepPurple, Colors.purple.shade300],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
-          ),
-        ),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -40,11 +33,10 @@ class PetDetailScreen extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: Sizes.spacer * 2),
+            const SizedBox(height: Sizes.spacer * 8),
             PetInfoCard(
               pet: pet,
             ),
-            const SizedBox(height: Sizes.spacer * 8),
             const AnimatedButton(),
             const SizedBox(height: Sizes.spacer)
             // Add your animated "Adopt Me" button here
