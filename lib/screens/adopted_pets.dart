@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:pa/data/pet_data.dart';
 
 import '../constants/sizes.dart';
-import '../models/per_card.dart';
 import '../shared/shared_pref.dart';
 
 class AdoptedPets extends StatefulWidget {
@@ -50,8 +49,8 @@ class _AdoptedPetsState extends State<AdoptedPets> {
                 );
               },
             )
-          : Center(
-              child: const Text(
+          : const Center(
+              child: Text(
                 "Nothing here!",
                 style: TextStyle(
                     fontWeight: FontWeight.w500,

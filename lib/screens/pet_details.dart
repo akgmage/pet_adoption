@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:photo_view/photo_view.dart';
-import 'package:provider/provider.dart';
 
 import '../models/per_card.dart';
-import '../models/theme_provider.dart';
-import '../shared/shared_pref.dart';
 import '../widgets/button.dart';
 import '../constants/sizes.dart';
 import '../widgets/pet_info_card.dart';
