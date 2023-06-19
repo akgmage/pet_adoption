@@ -20,7 +20,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   FocusNode myfocus = FocusNode();
-  List<bool> selectedList = [true, false, false, false, false];
+  List<bool> selectedList = [true, false, false, false];
   String type = "cat";
   final List<Widget> avatars = [
     CircleAvatar(
@@ -37,10 +37,6 @@ class _HomePageState extends State<HomePage> {
     ),
     CircleAvatar(
       backgroundImage: AssetImage('assets/dog.jpg'),
-      radius: 50,
-    ),
-    CircleAvatar(
-      backgroundImage: AssetImage('assets/rabbit.jpg'),
       radius: 50,
     ),
   ];
@@ -99,7 +95,8 @@ class _HomePageState extends State<HomePage> {
       ),
       body: HawkFabMenu(
           icon: AnimatedIcons.menu_arrow,
-          fabColor: Color(0xff121212),
+          fabColor:
+              themeChange.darkTheme ? Color(0xff121212) : Color(0xff7cb9df),
           iconColor: Colors.white,
           hawkFabMenuController: hawkFabMenuController,
           items: [
@@ -159,9 +156,9 @@ class _HomePageState extends State<HomePage> {
                             print(index);
                             if (index == 0) {
                               type = "cat";
-                            } else if (index == 1) {
+                            } else if (index == 1 || index == 3) {
                               type = "dog";
-                            } else {
+                            } else if (index == 2) {
                               type = "rabbit";
                             }
                           });

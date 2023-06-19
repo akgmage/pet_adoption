@@ -34,9 +34,11 @@ class PetDetailScreen extends StatelessWidget {
             PetInfoCard(
               pet: pet,
             ),
+            const SizedBox(height: Sizes.spacer),
             AnimatedButton(
               pet: pet,
             ),
+
             const SizedBox(height: Sizes.spacer)
             // Add your animated "Adopt Me" button here
             // You can use any animation library or Flutter's built-in animations

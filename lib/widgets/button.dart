@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:motion_toast/motion_toast.dart';
+import 'package:motion_toast/resources/arrays.dart';
 import 'package:pa/models/per_card.dart';
 import 'package:provider/provider.dart';
 import 'package:slider_button/slider_button.dart';
@@ -45,6 +47,7 @@ class _AnimatedButtonState extends State<AnimatedButton> {
                 themeChange.darkTheme ? Color(0xFF404040) : Color(0xff7cb9df),
             action: () async {
               setState(() {
+                _displaySuccessMotionToast(widget.pet);
                 print(widget.pet.id);
                 pref.setAdoptedID(widget.pet.id);
               });
@@ -54,7 +57,7 @@ class _AnimatedButtonState extends State<AnimatedButton> {
               style: TextStyle(
                   color: Color(0xff4a4a4a),
                   fontWeight: FontWeight.w500,
-                  fontSize: 17),
+                  fontSize: Sizes.mediumFontSize),
             ),
             icon: const Icon(
               Icons.send,
@@ -68,5 +71,25 @@ class _AnimatedButtonState extends State<AnimatedButton> {
               style: TextStyle(fontWeight: FontWeight.w500, fontSize: 17),
             ),
           );
+  }
+
+  void _displaySuccessMotionToast(Pet pet) {
+    MotionToast toast = MotionToast.success(
+      title: const Text(
+        'Success',
+        style: TextStyle(fontWeight: FontWeight.bold),
+      ),
+      description: Text(
+        'Congratulations! you adopted ${pet.name}',
+        style: const TextStyle(fontSize: Sizes.smallFontSize - 2),
+      ),
+      layoutOrientation: ToastOrientation.rtl,
+      animationType: AnimationType.fromRight,
+      dismissable: true,
+    );
+    toast.show(context);
+    Future.delayed(const Duration(seconds: 5)).then((value) {
+      toast.dismiss();
+    });
   }
 }
