@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:hawk_fab_menu/hawk_fab_menu.dart';
 import 'package:pa/models/per_card.dart';
+import 'package:pa/screens/adopted_pets.dart';
 import 'package:pa/screens/pet_details.dart';
 import 'package:provider/provider.dart';
 
 import '../data/pet_data.dart';
 import '../models/theme_provider.dart';
+import '../shared/shared_pref.dart';
 import '../widgets/card.dart';
 import '../widgets/pet_avatar.dart';
 
@@ -79,6 +81,7 @@ class _HomePageState extends State<HomePage> {
   HawkFabMenuController hawkFabMenuController = HawkFabMenuController();
   @override
   Widget build(BuildContext context) {
+    AdoptedPetsPreference pref = AdoptedPetsPreference();
     final themeChange = Provider.of<DarkThemeProvider>(context);
     return Scaffold(
       appBar: AppBar(
@@ -127,7 +130,9 @@ class _HomePageState extends State<HomePage> {
             HawkFabMenuItem(
               label: '',
               ontap: () {
-                //TODO: show adopted pets
+                pref.getAdoptedList();
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => AdoptedPets()));
               },
               icon: const Icon(Icons.history),
               color: themeChange.darkTheme ? Colors.white : Color(0xff7cb9df),
