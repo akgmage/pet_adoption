@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hawk_fab_menu/hawk_fab_menu.dart';
 import 'package:pa/models/per_card.dart';
 import 'package:pa/screens/pet_details.dart';
 import 'package:provider/provider.dart';
@@ -75,6 +76,7 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  HawkFabMenuController hawkFabMenuController = HawkFabMenuController();
   @override
   Widget build(BuildContext context) {
     final themeChange = Provider.of<DarkThemeProvider>(context);
@@ -92,90 +94,128 @@ class _HomePageState extends State<HomePage> {
               labelStyle: TextStyle(fontSize: 24)),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(10),
-        child: Column(
-          children: [
-            Checkbox(
-                value: themeChange.darkTheme,
-                onChanged: (bool? value) {
-                  themeChange.darkTheme = value!;
-                }),
-            SizedBox(
-              height: 100,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: avatars.length,
-                itemBuilder: (context, index) {
-                  return GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        myfocus.unfocus();
-                        selectedList =
-                            List.generate(avatars.length, (i) => i == index);
-                        print(index);
-                        if (index == 0) {
-                          type = "cat";
-                        } else if (index == 1) {
-                          type = "dog";
-                        } else {
-                          type = "rabbit";
-                        }
-                      });
-                    },
-                    child: PetAvatar(
-                      backgroundColor: selectedList[index]
-                          ? const Color(0xff7cb9df)
-                          : Colors.transparent,
-                      avatars: avatars,
-                      backgroundImage:
-                          (avatars[index] as CircleAvatar).backgroundImage,
+      body: HawkFabMenu(
+          icon: AnimatedIcons.menu_arrow,
+          fabColor: Color(0xff121212),
+          iconColor: Colors.white,
+          hawkFabMenuController: hawkFabMenuController,
+          items: [
+            HawkFabMenuItem(
+                label: '',
+                ontap: () {
+                  themeChange.darkTheme = !themeChange.darkTheme;
+                  ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(
+                        themeChange.darkTheme
+                            ? 'Switched to darkmode'
+                            : 'switched to light mode',
+                      ),
                     ),
                   );
                 },
-              ),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Expanded(
-              child: _foundPets.isNotEmpty
-                  ? ListView.builder(
-                      itemCount: _foundPets.length,
-                      itemBuilder: (context, index) {
-                        return _foundPets[index].type == type
-                            ? Padding(
-                                padding: const EdgeInsets.only(bottom: 16.0),
-                                child: GestureDetector(
-                                  onTap: () {
-                                    myfocus.unfocus();
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => PetDetailScreen(
-                                          pet: _foundPets[index],
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                  child: PetCard(
-                                    pet: _foundPets[index],
-                                  ),
-                                ),
-                              )
-                            : const SizedBox();
-                      },
-                    )
-                  : const Text(
-                      'No results found',
-                      style: TextStyle(
-                        fontSize: 24,
-                      ),
-                    ),
+                icon: themeChange.darkTheme
+                    ? Icon(
+                        Icons.sunny,
+                        color: Colors.orange,
+                      )
+                    : Icon(Icons.mode_night),
+                color: themeChange.darkTheme ? Colors.white : Color(0xff7cb9df),
+                labelColor: Colors.blue,
+                labelBackgroundColor: Colors.transparent),
+            HawkFabMenuItem(
+              label: '',
+              ontap: () {
+                //TODO: show adopted pets
+              },
+              icon: const Icon(Icons.history),
+              color: themeChange.darkTheme ? Colors.white : Color(0xff7cb9df),
+              labelColor: Colors.white,
+              labelBackgroundColor: Colors.transparent,
             ),
           ],
-        ),
-      ),
+          body: Padding(
+            padding: const EdgeInsets.all(10),
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 100,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: avatars.length,
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            myfocus.unfocus();
+                            selectedList = List.generate(
+                                avatars.length, (i) => i == index);
+                            print(index);
+                            if (index == 0) {
+                              type = "cat";
+                            } else if (index == 1) {
+                              type = "dog";
+                            } else {
+                              type = "rabbit";
+                            }
+                          });
+                        },
+                        child: PetAvatar(
+                          backgroundColor: selectedList[index]
+                              ? const Color(0xff7cb9df)
+                              : Colors.transparent,
+                          avatars: avatars,
+                          backgroundImage:
+                              (avatars[index] as CircleAvatar).backgroundImage,
+                        ),
+                      );
+                    },
+                  ),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Expanded(
+                  child: _foundPets.isNotEmpty
+                      ? ListView.builder(
+                          itemCount: _foundPets.length,
+                          itemBuilder: (context, index) {
+                            return _foundPets[index].type == type
+                                ? Padding(
+                                    padding:
+                                        const EdgeInsets.only(bottom: 16.0),
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        myfocus.unfocus();
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                PetDetailScreen(
+                                              pet: _foundPets[index],
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                      child: PetCard(
+                                        pet: _foundPets[index],
+                                      ),
+                                    ),
+                                  )
+                                : const SizedBox();
+                          },
+                        )
+                      : const Text(
+                          'No results found',
+                          style: TextStyle(
+                            fontSize: 24,
+                          ),
+                        ),
+                ),
+              ],
+            ),
+          )),
     );
   }
 }
