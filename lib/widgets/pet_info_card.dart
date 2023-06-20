@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-
-import '../constants/sizes.dart';
-import '../models/per_card.dart';
+import 'package:pa/constants/sizes.dart';
+import 'package:pa/models/per_card.dart';
 
 class PetInfoCard extends StatelessWidget {
   final Pet pet;

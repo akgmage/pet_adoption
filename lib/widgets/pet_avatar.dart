@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../constants/sizes.dart';
+import 'package:pa/constants/sizes.dart';
 
 class PetAvatar extends StatelessWidget {
   const PetAvatar({

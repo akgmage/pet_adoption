@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:motion_toast/motion_toast.dart';
 import 'package:motion_toast/resources/arrays.dart';
+import 'package:pa/constants/sizes.dart';
 import 'package:pa/models/per_card.dart';
+import 'package:pa/models/theme_provider.dart';
+import 'package:pa/screens/home_screen.dart';
+import 'package:pa/shared/shared_pref.dart';
 import 'package:provider/provider.dart';
 import 'package:slider_button/slider_button.dart';
-
-import '../constants/sizes.dart';
-import '../models/theme_provider.dart';
-import '../shared/shared_pref.dart';
 
 class AnimatedButton extends StatefulWidget {
   final Pet pet;
@@ -74,6 +74,16 @@ class _AnimatedButtonState extends State<AnimatedButton> {
   }
 
   void _displaySuccessMotionToast(Pet pet) {
+    List<bool> seleectedList = [];
+    if (pet.type == "cat") {
+      seleectedList = [true, false, false, false];
+    } else if (pet.type == "dog") {
+      seleectedList = [false, true, false, false];
+    } else if (pet.type == "rabbit") {
+      seleectedList = [false, false, true, false];
+    } else if (pet.type == "bird") {
+      seleectedList = [false, false, false, true];
+    }
     MotionToast toast = MotionToast.success(
       title: const Text(
         'Success',
@@ -88,8 +98,15 @@ class _AnimatedButtonState extends State<AnimatedButton> {
       dismissable: true,
     );
     toast.show(context);
-    Future.delayed(const Duration(seconds: 5)).then((value) {
+    Future.delayed(const Duration(milliseconds: 3150)).then((value) {
       toast.dismiss();
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => HomePage(
+                    type: pet.type,
+                    selectedList: seleectedList,
+                  )));
     });
   }
 }

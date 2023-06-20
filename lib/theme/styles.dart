@@ -1,8 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-
-import '../constants/color.dart';
+import 'package:pa/constants/color.dart';
 
 class Styles {
   static ThemeData themeData(bool isDarkTheme, BuildContext context) {
@@ -21,13 +20,13 @@ class Styles {
       hoverColor: isDarkTheme ? Color(0xff3A3A3B) : Color(0xff4285F4),
       focusColor: isDarkTheme ? Colors.white : Colors.white,
       disabledColor: Colors.grey,
-      cardColor: isDarkTheme ? Color(0xFF282828) : Color(0xfff7ebd9),
-      canvasColor: isDarkTheme ? Color(0xFF282828) : Color(0xfff7ebd9),
+      cardColor: isDarkTheme ? AppColors.darkModeBlack : AppColors.pastel,
+      canvasColor: isDarkTheme ? AppColors.darkModeBlack : AppColors.pastel,
       brightness: isDarkTheme ? Brightness.dark : Brightness.light,
       buttonTheme: Theme.of(context).buttonTheme.copyWith(
           colorScheme: isDarkTheme ? ColorScheme.dark() : ColorScheme.light()),
       appBarTheme: AppBarTheme(
-        backgroundColor: isDarkTheme ? Color(0xff181811) : Color(0xff7cb9df),
+        backgroundColor: isDarkTheme ? Color(0xff181811) : AppColors.lightBlue,
         elevation: 5.0,
       ),
     );
