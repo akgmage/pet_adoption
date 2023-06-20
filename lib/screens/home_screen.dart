@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:hawk_fab_menu/hawk_fab_menu.dart';
+import 'package:pa/constants/color.dart';
+import 'package:pa/data/pet_data.dart';
 import 'package:pa/models/per_card.dart';
+import 'package:pa/models/theme_provider.dart';
 import 'package:pa/screens/adopted_pets.dart';
 import 'package:pa/screens/pet_details.dart';
+import 'package:pa/shared/shared_pref.dart';
+import 'package:pa/widgets/card.dart';
+import 'package:pa/widgets/pet_avatar.dart';
 import 'package:provider/provider.dart';
 
-import '../data/pet_data.dart';
-import '../models/theme_provider.dart';
-import '../shared/shared_pref.dart';
-import '../widgets/card.dart';
-import '../widgets/pet_avatar.dart';
-
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  List<bool> selectedList;
+  String type;
+  HomePage({Key? key, required this.selectedList, required this.type})
+      : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -20,8 +23,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   FocusNode myfocus = FocusNode();
-  List<bool> selectedList = [true, false, false, false];
-  String type = "cat";
   final List<Widget> avatars = [
     CircleAvatar(
       backgroundImage: AssetImage('assets/cat.jpg'),
@@ -36,7 +37,7 @@ class _HomePageState extends State<HomePage> {
       radius: 50,
     ),
     CircleAvatar(
-      backgroundImage: AssetImage('assets/dog.jpg'),
+      backgroundImage: AssetImage('assets/bird1.jpg'),
       radius: 50,
     ),
   ];
@@ -46,10 +47,18 @@ class _HomePageState extends State<HomePage> {
 
   // This list holds the data for the list view
   List<Pet> _foundPets = [];
+  List<String> list = [];
   @override
   initState() {
     // at the beginning, all users are shown
     _foundPets = petCards;
+    AdoptedPetsPreference pref = AdoptedPetsPreference();
+    // at the beginning, all users are shown
+    pref.getAdoptedList().then((value) {
+      setState(() {
+        list = value;
+      });
+    });
     super.initState();
   }
 
@@ -63,7 +72,7 @@ class _HomePageState extends State<HomePage> {
       results = petCards
           .where((pet) =>
               pet.name.toLowerCase().contains(enteredKeyword.toLowerCase()) &&
-              pet.type == type)
+              pet.type == widget.type)
           .toList();
       // we use the toLowerCase() method to make it case-insensitive
     }
@@ -96,7 +105,7 @@ class _HomePageState extends State<HomePage> {
       body: HawkFabMenu(
           icon: AnimatedIcons.menu_arrow,
           fabColor:
-              themeChange.darkTheme ? Color(0xff121212) : Color(0xff7cb9df),
+              themeChange.darkTheme ? AppColors.darkBlack : AppColors.lightBlue,
           iconColor: Colors.white,
           hawkFabMenuController: hawkFabMenuController,
           items: [
@@ -109,19 +118,20 @@ class _HomePageState extends State<HomePage> {
                     SnackBar(
                       content: Text(
                         themeChange.darkTheme
-                            ? 'Switched to darkmode'
-                            : 'switched to light mode',
+                            ? 'Switched to dark mode'
+                            : 'Switched to light mode',
                       ),
                     ),
                   );
                 },
                 icon: themeChange.darkTheme
-                    ? Icon(
+                    ? const Icon(
                         Icons.sunny,
                         color: Colors.orange,
                       )
-                    : Icon(Icons.mode_night),
-                color: themeChange.darkTheme ? Colors.white : Color(0xff7cb9df),
+                    : const Icon(Icons.mode_night),
+                color:
+                    themeChange.darkTheme ? Colors.white : AppColors.lightBlue,
                 labelColor: Colors.blue,
                 labelBackgroundColor: Colors.transparent),
             HawkFabMenuItem(
@@ -132,7 +142,7 @@ class _HomePageState extends State<HomePage> {
                     MaterialPageRoute(builder: (context) => AdoptedPets()));
               },
               icon: const Icon(Icons.history),
-              color: themeChange.darkTheme ? Colors.white : Color(0xff7cb9df),
+              color: themeChange.darkTheme ? Colors.white : AppColors.lightBlue,
               labelColor: Colors.white,
               labelBackgroundColor: Colors.transparent,
             ),
@@ -151,21 +161,23 @@ class _HomePageState extends State<HomePage> {
                         onTap: () {
                           setState(() {
                             myfocus.unfocus();
-                            selectedList = List.generate(
+                            widget.selectedList = List.generate(
                                 avatars.length, (i) => i == index);
                             print(index);
                             if (index == 0) {
-                              type = "cat";
-                            } else if (index == 1 || index == 3) {
-                              type = "dog";
+                              widget.type = "cat";
+                            } else if (index == 1) {
+                              widget.type = "dog";
                             } else if (index == 2) {
-                              type = "rabbit";
+                              widget.type = "rabbit";
+                            } else if (index == 3) {
+                              widget.type = "bird";
                             }
                           });
                         },
                         child: PetAvatar(
-                          backgroundColor: selectedList[index]
-                              ? const Color(0xff7cb9df)
+                          backgroundColor: widget.selectedList[index]
+                              ? AppColors.lightBlue
                               : Colors.transparent,
                           avatars: avatars,
                           backgroundImage:
@@ -183,7 +195,7 @@ class _HomePageState extends State<HomePage> {
                       ? ListView.builder(
                           itemCount: _foundPets.length,
                           itemBuilder: (context, index) {
-                            return _foundPets[index].type == type
+                            return _foundPets[index].type == widget.type
                                 ? Padding(
                                     padding:
                                         const EdgeInsets.only(bottom: 16.0),
@@ -202,6 +214,8 @@ class _HomePageState extends State<HomePage> {
                                       },
                                       child: PetCard(
                                         pet: _foundPets[index],
+                                        adopted: list.contains(
+                                            _foundPets[index].id.toString()),
                                       ),
                                     ),
                                   )
