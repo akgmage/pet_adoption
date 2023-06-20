@@ -1,4 +1,4 @@
-# Pet Adoption App
+# Pet Adoption App [UI] Petify
 
 The Pet Adoption App is a mobile application that allows users to browse and adopt pets from various shelters and rescue organizations. This app provides a convenient platform for users to find their perfect furry companions and facilitates the adoption process. It offers a user-friendly interface and a range of features to enhance the adoption experience.
 
@@ -8,7 +8,7 @@ The Pet Adoption App is a mobile application that allows users to browse and ado
 
 2. **Detail Page**: The detail page provides comprehensive information about each pet, including their image, name, age, price, breed, and type. Users can view detailed profiles and make informed decisions about adoption.
 
-3. **Interactive Image Viewer**: By clicking on a pet's image, users can access an interactive viewer that allows zooming in and out. This feature provides a closer look at the pet's image, enabling users to examine details and connect emotionally with the pets. *(Extra score)*
+3. **Interactive Image Viewer**: By clicking on a pet's image, users can access an interactive viewer that allows zooming in and out. This feature provides a closer look at the pet's image, enabling users to examine details and connect emotionally with the pets.
 
 4. **Adopt Me Button**: On the detail page, an "Adopt Me" button is available. Clicking this button displays a popup message that confirms the adoption and shows the name of the adopted pet.
 
@@ -34,6 +34,7 @@ To use the Pet Adoption App, follow these steps:
 1. Clone the repository: `git clone https://github.com/your-repo-url.git`
 2. Install the necessary dependencies: `flutter pub get`
 3. Run the app on an emulator or physical device: `flutter run`
+4. Run the tests `flutter test`
 
 Make sure you have Flutter and Dart installed on your machine.
 
