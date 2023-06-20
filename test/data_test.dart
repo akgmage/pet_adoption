@@ -203,8 +203,44 @@ void main() {
         "asset": "assets/rabbit5.jpg",
         "breed": "Lionhead"
       },
+      {
+        "id": 26,
+        "name": "Flyer",
+        "age": 2,
+        "type": "bird",
+        "asset": "assets/bird1.jpg",
+        "breed": "Lionhead",
+        "price": 360,
+      },
+      {
+        "id": 27,
+        "name": "Conquerer",
+        "age": 2,
+        "type": "bird",
+        "asset": "assets/bird2.jpg",
+        "breed": "Tigerhead",
+        "price": 360,
+      },
+      {
+        "id": 28,
+        "name": "Legend",
+        "age": 2,
+        "type": "bird",
+        "asset": "assets/bird3.jpg",
+        "breed": "Rhinohead",
+        "price": 360,
+      },
+      {
+        "id": 29,
+        "name": "Divine",
+        "age": 2,
+        "type": "bird",
+        "asset": "assets/bird4.jpg",
+        "breed": "Elephanthead",
+        "price": 360,
+      },
     ];
 
-    expect(allUsers.length, 25);
+    expect(allUsers.length, 29);
   });
 }
