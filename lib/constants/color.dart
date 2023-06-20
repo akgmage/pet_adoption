@@ -32,3 +32,10 @@ const MaterialColor primaryWhite = MaterialColor(
 );
 const int blackPrimaryValue = 0xFF000000;
 const int whitePrimaryValue = 0xFFFFFFFF;
+
+class AppColors {
+  static const Color lightBlue = Color(0xff7cb9df);
+  static const Color pastel = Color(0xfff7ebd9);
+  static const Color darkBlack = Color(0xff121212);
+  static const Color darkModeBlack = Color(0xFF282828);
+}

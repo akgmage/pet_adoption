@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-
-import '../constants/sizes.dart';
-import '../models/per_card.dart';
+import 'package:pa/constants/sizes.dart';
+import 'package:pa/models/per_card.dart';
 
 class PetCard extends StatelessWidget {
   final Pet pet;
+  final bool adopted;
 
-  PetCard({required this.pet});
+  PetCard({required this.pet, required this.adopted});
 
   @override
   Widget build(BuildContext context) {
@@ -23,11 +23,22 @@ class PetCard extends StatelessWidget {
               ClipRRect(
                 borderRadius: const BorderRadius.vertical(
                     top: Radius.circular(Sizes.borderRadius)),
-                child: Image.asset(
-                  pet.imageAsset,
-                  height: Sizes.cardImageHeight,
-                  width: double.infinity,
-                  fit: BoxFit.fill,
+                child: ColorFiltered(
+                  colorFilter: adopted
+                      ? ColorFilter.mode(
+                          Colors.grey,
+                          BlendMode.saturation,
+                        )
+                      : ColorFilter.mode(
+                          Colors.transparent,
+                          BlendMode.multiply,
+                        ),
+                  child: Image.asset(
+                    pet.imageAsset,
+                    height: Sizes.cardImageHeight,
+                    width: double.infinity,
+                    fit: BoxFit.fill,
+                  ),
                 ),
               ),
               Padding(
