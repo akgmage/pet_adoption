@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:pa/constants/sizes.dart';
 import 'package:pa/data/pet_data.dart';
-
-import '../constants/sizes.dart';
-import '../shared/shared_pref.dart';
+import 'package:pa/shared/shared_pref.dart';
 
 class AdoptedPets extends StatefulWidget {
   const AdoptedPets({Key? key}) : super(key: key);
@@ -21,6 +20,7 @@ class _AdoptedPetsState extends State<AdoptedPets> {
       setState(() {
         print(list);
         list = value;
+        list = List.from(list.reversed);
       });
     });
     super.initState();
@@ -30,7 +30,7 @@ class _AdoptedPetsState extends State<AdoptedPets> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Adopted Pets'),
+        title: const Text('Adopted Pets'),
       ),
       body: list.isNotEmpty
           ? ListView.builder(
