@@ -26,7 +26,7 @@ The Pet Adoption App is a mobile application that allows users to browse and ado
 
 3. **Interactive Image Viewer**: By clicking on a pet's image, users can access an interactive viewer that allows zooming in and out. This feature provides a closer look at the pet's image, enabling users to examine details and connect emotionally with the pets.
 
-4. **Adopt Me Button**: On the detail page, an "Adopt Me" button is available. Clicking this button displays a popup message that confirms the adoption and shows the name of the adopted pet.
+4. **Adopt Me Button**: On the detail page, an "Adopt Me" button is available. Sliding this button displays a motion popup that confirms the adoption and shows the name of the adopted pet.
 
 5. **History Page**: The app includes a history page that lists all the adopted pets in chronological order. Users can view their adoption history.
 
