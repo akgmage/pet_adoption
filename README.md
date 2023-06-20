@@ -34,6 +34,7 @@ To use the Pet Adoption App, follow these steps:
 1. Clone the repository: `git clone https://github.com/your-repo-url.git`
 2. Install the necessary dependencies: `flutter pub get`
 3. Run the app on an emulator or physical device: `flutter run`
+4. Run the tests `flutter test`
 
 Make sure you have Flutter and Dart installed on your machine.
 
