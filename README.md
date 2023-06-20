@@ -4,6 +4,17 @@
 <img src="https://github.com/akgmage/pet_adoption/blob/master/screenshots/Screenshot_1687271247.png" width="350"/>
 <img src="https://github.com/akgmage/pet_adoption/blob/master/screenshots/Screenshot_1687271253.png" width="350"/>
 <img src="https://github.com/akgmage/pet_adoption/blob/master/screenshots/Screenshot_1687271256.png" width="350"/>
+
+<img src="https://github.com/akgmage/pet_adoption/blob/master/screenshots/Screenshot_1687271268.png" width="350"/>
+<img src="https://github.com/akgmage/pet_adoption/blob/master/screenshots/Screenshot_1687271273.png" width="350"/>
+<img src="https://github.com/akgmage/pet_adoption/blob/master/screenshots/Screenshot_1687271287.png" width="350"/>
+<img src="https://github.com/akgmage/pet_adoption/blob/master/screenshots/Screenshot_1687271291.png" width="350"/>
+
+<img src="https://github.com/akgmage/pet_adoption/blob/master/screenshots/Screenshot_1687271336.png" width="350"/>
+<img src="https://github.com/akgmage/pet_adoption/blob/master/screenshots/Screenshot_1687271345.png" width="350"/>
+<img src="https://github.com/akgmage/pet_adoption/blob/master/screenshots/Screenshot_1687271358.png" width="350"/>
+<img src="https://github.com/akgmage/pet_adoption/blob/master/screenshots/Screenshot_1687271372.png" width="350"/>
+
 </p>
 The Pet Adoption App is a mobile application that allows users to browse and adopt pets from various shelters and rescue organizations. This app provides a convenient platform for users to find their perfect furry companions and facilitates the adoption process. It offers a user-friendly interface and a range of features to enhance the adoption experience.
 
