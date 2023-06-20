@@ -42,7 +42,10 @@ class _MyAppState extends State<MyApp> {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             theme: Styles.themeData(themeChangeProvider.darkTheme, context),
-            home: HomePage(),
+            home: HomePage(
+              type: "cat",
+              selectedList: [true, false, false, false],
+            ),
           );
         },
       ),
