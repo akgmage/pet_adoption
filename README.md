@@ -1,5 +1,7 @@
 # Pet Adoption App [UI] Petify
 
+![HomeScreen](https://github.com/akgmage/pet_adoption/blob/master/screenshots/Screenshot_1687271242.png)
+
 The Pet Adoption App is a mobile application that allows users to browse and adopt pets from various shelters and rescue organizations. This app provides a convenient platform for users to find their perfect furry companions and facilitates the adoption process. It offers a user-friendly interface and a range of features to enhance the adoption experience.
 
 ## Features
