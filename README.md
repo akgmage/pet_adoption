@@ -28,7 +28,7 @@ The Pet Adoption App is a mobile application that allows users to browse and ado
 
 4. **Adopt Me Button**: On the detail page, an "Adopt Me" button is available. Clicking this button displays a popup message that confirms the adoption and shows the name of the adopted pet.
 
-5. **History Page**: The app includes a history page that lists all the adopted pets in chronological order. Users can view their adoption history and revisit the profiles of previously adopted pets.
+5. **History Page**: The app includes a history page that lists all the adopted pets in chronological order. Users can view their adoption history.
 
 6. **Dark Mode Support**: The app offers support for dark mode, providing users with the option to switch between light and dark themes for optimal viewing comfort.
 
